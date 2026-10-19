@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>לוֹמְדִים קְרִיאָה בְּצִ'יק עִם הַתּוּכִי וְהָאַרְיֵה 🦜🦁</title>
+    <title>לוֹמְדִים קְרִיאָה בְּצִ'יק עִם הַתּוּכִי וְהָאַרְיֵה 🦜🦁</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;800&display=swap');
@@ -34,7 +34,7 @@
         <div class="flex items-center gap-3">
             <span class="text-4xl">🦜🦁</span>
             <div>
-                <h1 class="text-2xl font-extrabold text-indigo-700">לוֹמְדִים קְרִיאָה בְּצִ'יק</h1>
+                <h1 class="text-2xl font-extrabold text-indigo-700">לוֹמְדִים קְרִיאָה בְּצִ'יק</h1>
                 <p class="text-xs text-gray-500 font-semibold">עִם הַתּוּכִי וְהָאַרְיֵה</p>
             </div>
         </div>
@@ -51,9 +51,9 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
             <button onclick="switchStage(1)" id="stage-btn-1" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-indigo-600 text-white shadow-lg btn-bounce">1. אוֹתִיּוֹת 🔤</button>
             <button onclick="switchStage(2)" id="stage-btn-2" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce">2. צְלִילִים 🐝</button>
-            <button onclick="switchStage(3)" id="stage-btn-3" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce">3. תִּרְגּוּל צְלִיל 🎯</button>
-            <button onclick="switchStage(4)" id="stage-btn-4" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce">4. מִילִּים 📖</button>
-            <button onclick="switchStage(5)" id="stage-btn-5" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce">5. מִשְׁפָּטִים 📜</button>
+            <button onclick="switchStage(3)" id="stage-btn-3" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce">3. תִּרְגּוּל צְלִיל 🎯</button>
+            <button onclick="switchStage(4)" id="stage-btn-4" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce">4. מִילִּים 📖</button>
+            <button onclick="switchStage(5)" id="stage-btn-5" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce">5. מִשְׁפָּטִים 📜</button>
             <button onclick="switchStage(6)" id="stage-btn-6" class="stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce">6. סִפּוּרִים 📚</button>
         </div>
     </nav>
@@ -71,346 +71,15 @@
 
         // Stage 1 Data: Hebrew Letters
         const lettersData = [
-            { char: 'א', name: 'אָלֶף' }, { char: 'ב', name: 'בֵּית' }, { char: 'ג', name: 'גִּימֶל' },
-            { char: 'ד', name: 'דָּלֶת' }, { char: 'ה', name: 'הֵא' }, { char: 'ו', name: 'וָו' },
+            { char: 'א', name: 'אָלֶף' }, { char: 'ב', name: 'בֵּית' }, { char: 'ג', name: 'גִּימֶל' },
+            { char: 'ד', name: 'דָּלֶת' }, { char: 'ה', name: 'הֵא' }, { char: 'ו', name: 'וָו' },
             { char: 'ז', name: 'זַיִן' }, { char: 'ח', name: 'חֵית' }, { char: 'ט', name: 'טֵית' },
-            { char: 'י', name: 'יוֹד' }, { char: 'כ', name: 'כַּף' }, { char: 'ל', name: 'לָמֶד' },
+            { char: 'י', name: 'יוֹד' }, { char: 'כ', name: 'כַּף' }, { char: 'ל', name: 'לָמֶד' },
             { char: 'מ', name: 'מֵם' }, { char: 'נ', name: 'נוּן' }, { char: 'ס', name: 'סָמֶךְ' },
-            { char: 'ע', name: 'עַיִן' }, { char: 'פ', name: 'פֵּא' }, { char: 'צ', name: 'צָדִי' },
-            { char: 'ק', name: 'קוֹף' }, { char: 'ר', name: 'רֵישׁ' }, { char: 'ש', name: 'שִׁין' },
-            { char: 'ת', name: 'תָּו' }
+            { char: 'ע', name: 'עַיִן' }, { char: 'פ', name: 'פֵּא' }, { char: 'צ', name: 'צָדִי' },
+            { char: 'ק', name: 'קוֹף' }, { char: 'ר', name: 'רֵישׁ' }, { char: 'ש', name: 'שִׁין' },
+            { char: 'ת', name: 'תָּו' }
         ];
 
         // Stage 2 & 3 Data: Vowels
-        const vowelsData = [
-            { id: 'sheva', name: 'שְׁוָא', symbol: 'ְ', example: 'בְּ' },
-            { id: 'kamatz', name: 'קָמַץ - פַּתַח', symbol: 'ָ', example: 'בָּ' },
-            { id: 'hirik', name: 'חִירִיק', symbol: 'ִ', example: 'בִּ' },
-            { id: 'holam', name: 'חוֹלָם', symbol: 'ֹ', example: 'בֹּ' },
-            { id: 'tsere', name: 'צֵירֵי - סֶגוֹל', symbol: 'ֵ', example: 'בֵּ' },
-            { id: 'shuruk', name: 'קֻבּוּץ - שׁוּרוּק', symbol: 'ֻ', example: 'בֻּ' }
-        ];
-
-        // Stage 4 Data: Words (NO Sheva category)
-        const wordsByVowels = {
-            kamatz: [
-                { word: 'גָּמָל', emoji: '🐪' }, { word: 'דַּף', emoji: '📄' },
-                { word: 'גַּל', emoji: '🌊' }, { word: 'בָּנָנָה', emoji: '🍌' },
-                { word: 'גַּן', emoji: '🏡' }, { word: 'עַן', emoji: '☁️' }
-            ],
-            hirik: [
-                { word: 'מִיץ', emoji: '🧃' }, { word: 'קִיץ', emoji: '☀️' },
-                { word: 'פִיל', emoji: '🐘' }, { word: 'שִׁיר', emoji: '🎵' },
-                { word: 'סִיר', emoji: '🍲' }, { word: 'קִיר', emoji: '🧱' }
-            ],
-            holam: [
-                { word: 'תֹּף', emoji: '🥁' }, { word: 'דֹּב', emoji: '🐻' },
-                { word: 'קוֹף', emoji: '🐒' }, { word: 'סוֹד', emoji: '🤫' },
-                { word: 'עוֹף', emoji: '🍗' }, { word: 'חוֹל', emoji: '🏖️' }
-            ],
-            tsere: [
-                { word: 'סֵפֶר', emoji: '📚' }, { word: 'דֶּלֶת', emoji: '🚪' },
-                { word: 'עֵץ', emoji: '🌳' }, { word: 'לֶחֶם', emoji: '🍞' },
-                { word: 'רֶגֶל', emoji: '🦶' }, { word: 'מֶלֶךְ', emoji: '👑' }
-            ],
-            shuruk: [
-                { word: 'סוּס', emoji: '🐴' }, { word: 'צוּק', emoji: '🏔️' },
-                { word: 'שּׁוּק', emoji: '🛒' }, { word: 'כַּדּוּר', emoji: '⚽' },
-                { word: 'תַּפּוּחַ', emoji: '🍎' }, { word: 'עוּגָה', emoji: '🎂' }
-            ]
-        };
-
-        // Stage 5 Data: Sentences
-        const sentencesData = [
-            { text: 'הַסּוּס רָץ בַּגָּן.', options: ['🐴', '🐶', '🐱', '🐟'], answer: 0 },
-            { text: 'הַפִיל שׁוֹתֶה מִיץ.', options: ['🦁', '🐘', '🐒', '🐻'], answer: 1 },
-            { text: 'הַצִּפּוֹר שָׁרָה שִׁיר.', options: ['🐸', '🦋', '🐦', '🐝'], answer: 2 },
-            { text: 'הַקּוֹף אוֹכֵל בָּנָנָה.', options: ['🐒', '🐴', '🦆', '🐮'], answer: 0 },
-            { text: 'הַדָּג שׂוֹחֶה בַּמַּיִם.', options: ['🦀', '🐟', '🐙', '🐬'], answer: 1 }
-        ];
-
-        // Stage 6 Data: Stories (6 Short Stories)
-        const storiesData = [
-            {
-                title: 'הָאַרְנָב וְהַגֶּזֶר 🐰🥕',
-                lines: [
-                    'הִנֵּה אַרְנָב לָבָן.',
-                    'הָאַרְנָב אוֹהֵב גֶּזֶר.',
-                    'הוּא רָץ בַּגָּן וְאוֹכֵל גֶּזֶר מָתוֹק.'
-                ],
-                question: 'מָה הָאַרְנָב אוֹהֵב לֶאֱכֹל?',
-                options: ['🥕 גֶּזֶר', '🍎 תַּפּוּחַ', '🍌 בָּנָנָה'],
-                answer: 0
-            },
-            {
-                title: 'הַסּוּס וְהַפַּרְפַּר 🐴🦋',
-                lines: [
-                    'סוּס חוּם רָץ בַּשָּׂדֶה.',
-                    'הוּא רוֹאֶה פַּרְפַּר יָפֶה.',
-                    'הַפַּרְפַּר עָף עַל הַפֶּרַח.'
-                ],
-                question: 'מִי עָף עַל הַפֶּרַח?',
-                options: ['🐴 הַסּוּס', '🦋 הַפַּרְפַּר', '🐝 הַדְּבוֹרָה'],
-                answer: 1
-            },
-            {
-                title: 'הַגַּן שֶׁל יובָל 🏡🌸',
-                lines: [
-                    'לְיוֹבָל יֵשׁ גַּן גָּדוֹל.',
-                    'בַּגָּן יֵשׁ עֵץ וּפְרָחִים.',
-                    'יוֹבָל מַשְׁקֶה אֶת הַגַּן בַּמַּיִם.'
-                ],
-                question: 'מָה עוֹשֶׂה יוֹבָל בַּגַּן?',
-                options: ['🛏️ יָשֵׁן', '💧 מַשְׁקֶה בַּמַּיִם', '⚽ מְשַׂחֵק כַּדּוּר'],
-                answer: 1
-            },
-            {
-                title: 'הַכֶּלֶב וְהַכַּדּוּר 🐶⚽',
-                lines: [
-                    'הִנֵּה כֶּלֶב חָמוּד בַּחָצֵר.',
-                    'הַכֶּלֶב אוֹהֵב לְשַׂחֵק.',
-                    'הוּא רָץ אַחֲרֵי הַכַּדּוּר הָאָדֹם.'
-                ],
-                question: 'אַחֲרֵי מָה הַכֶּלֶב רָץ?',
-                options: ['⚽ הַכַּדּוּר', '🐱 הַחֲתוּל', '🚗 הַמְּכוֹנִית'],
-                answer: 0
-            },
-            {
-                title: 'הַצִּפּוֹר שֶׁל מַעְיָן 🐦🎵',
-                lines: [
-                    'מַעְיָן רוֹאָה צִפּוֹר קְטַנָּה.',
-                    'הַצִּפּוֹר יוֹשֶׁבֶת עַל הָעֵץ.',
-                    'הִיא שָׁרָה שִׁיר נָעִים וְיָפֶה.'
-                ],
-                question: 'איפֹה יוֹשֶׁבֶת הַצִּפּוֹר?',
-                options: ['🏠 עַל הַבַּיִת', '🌳 עַל הָעֵץ', '🚗 עַל הָרֶכֶב'],
-                answer: 1
-            },
-            {
-                title: 'הַדָּג בַּמַּיִם 🐟🌊',
-                lines: [
-                    'הַדָּג הַזָּהָב שׂוֹחֶה בַּיָּם.',
-                    'הוּא שׂוֹחֶה מַהֵר מְאֹד.',
-                    'הַדָּג פוֹגֵשׁ חָבֵר קָטָן בַּמַּיִם.'
-                ],
-                question: 'אֵיפֹה שׂוֹחֶה הַדָּג?',
-                options: ['🌊 בַּיָּם', '🪣 בַּדְּלִי', '🌳 עַל הָעֵץ'],
-                answer: 0
-            }
-        ];
-
-        let currentSubIndex = 0;
-
-        function addStar() {
-            starCount++;
-            document.getElementById('star-count').innerText = starCount;
-        }
-
-        function speakText(text) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'he-IL';
-                utterance.rate = 0.85;
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function switchStage(stageNum) {
-            currentStage = stageNum;
-            currentSubIndex = 0;
-            document.querySelectorAll('.stage-tab').forEach((btn, idx) => {
-                if (idx + 1 === stageNum) {
-                    btn.className = "stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-indigo-600 text-white shadow-lg btn-bounce";
-                } else {
-                    btn.className = "stage-tab py-3 px-2 rounded-xl font-bold text-sm bg-white text-gray-700 shadow btn-bounce";
-                }
-            });
-            renderStage();
-        }
-
-        function renderStage() {
-            const container = document.getElementById('stage-content');
-            container.innerHTML = '';
-
-            if (currentStage === 1) renderStage1(container);
-            else if (currentStage === 2) renderStage2(container);
-            else if (currentStage === 3) renderStage3(container);
-            else if (currentStage === 4) renderStage4(container);
-            else if (currentStage === 5) renderStage5(container);
-            else if (currentStage === 6) renderStage6(container);
-        }
-
-        // --- STAGE 1 ---
-        function renderStage1(container) {
-            const item = lettersData[currentSubIndex];
-            container.innerHTML = `
-                <div class="text-gray-500 font-bold mb-2">לִמְדוּ אֶת הָאוֹתִיּוֹת</div>
-                <div class="text-8xl font-black text-indigo-600 my-4 cursor-pointer" onclick="speakText('${item.char}')">${item.char}</div>
-                <div class="text-2xl font-bold text-gray-700 mb-6">${item.name}</div>
-                <div class="flex gap-4">
-                    <button onclick="speakText('${item.char}')" class="bg-amber-500 hover:bg-amber-600 text-white text-lg font-bold py-3 px-6 rounded-2xl shadow btn-bounce">🔊 הַשְׁמַע</button>
-                    <button onclick="nextLetter()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-bold py-3 px-6 rounded-2xl shadow btn-bounce">הַבָּא ⬅️</button>
-                </div>
-            `;
-        }
-
-        function nextLetter() {
-            addStar();
-            currentSubIndex = (currentSubIndex + 1) % lettersData.length;
-            renderStage();
-        }
-
-        // --- STAGE 2 ---
-        function renderStage2(container) {
-            let tabsHtml = vowelsData.map((v, i) => `
-                <button onclick="currentSubIndex=${i}; renderStage2(document.getElementById('stage-content'))" 
-                        class="px-3 py-1.5 rounded-lg text-sm font-bold ${currentSubIndex === i ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700'}">
-                    ${v.name}
-                </button>
-            `).join('');
-
-            const v = vowelsData[currentSubIndex];
-
-            container.innerHTML = `
-                <div class="flex flex-wrap justify-center gap-2 mb-6">${tabsHtml}</div>
-                <div class="text-gray-500 font-bold mb-2">לִמְדוּ אֶת הַצְּלִיל</div>
-                <div class="nikud-large font-black text-amber-600 my-2 cursor-pointer" onclick="speakText('${v.example}')">${v.example}</div>
-                <div class="text-2xl font-bold text-gray-700 mb-6">${v.name}</div>
-                <button onclick="speakText('${v.example}'); addStar();" class="bg-amber-500 hover:bg-amber-600 text-white text-lg font-bold py-3 px-6 rounded-2xl shadow btn-bounce">🔊 הַשְׁמַע צְלִיל</button>
-            `;
-        }
-
-        // --- STAGE 3 ---
-        function renderStage3(container) {
-            const v = vowelsData[currentSubIndex % vowelsData.length];
-            container.innerHTML = `
-                <div class="text-gray-500 font-bold mb-2">תִּרְגּוּל צְלִיל: ${v.name}</div>
-                <div class="text-6xl font-black text-indigo-600 my-4">${v.example}</div>
-                <p class="text-lg font-semibold text-gray-600 mb-6">לַחֲצוּ עַל הַכַּפְתּוֹר כְּדֵי לִשְׁמֹעַ וּלְתַרְגֵּל!</p>
-                <div class="flex gap-4">
-                    <button onclick="speakText('${v.example}'); addStar();" class="bg-indigo-600 text-white text-lg font-bold py-3 px-6 rounded-2xl shadow btn-bounce">🔊 הַשְׁמַע</button>
-                    <button onclick="currentSubIndex++; renderStage();" class="bg-amber-500 text-white text-lg font-bold py-3 px-6 rounded-2xl shadow btn-bounce">צְלִיל בָּא ⬅️</button>
-                </div>
-            `;
-        }
-
-        // --- STAGE 4 ---
-        function renderStage4(container) {
-            const categories = [
-                { id: 'kamatz', name: 'קָמַץ - פַּתַח' },
-                { id: 'hirik', name: 'חִירִיק' },
-                { id: 'holam', name: 'חוֹלָם' },
-                { id: 'tsere', name: 'צֵירֵי - סֶגוֹל' },
-                { id: 'shuruk', name: 'קֻבּוּץ - שׁוּרוּק' }
-            ];
-
-            let activeCat = categories[currentSubIndex % categories.length];
-            let wordList = wordsByVowels[activeCat.id];
-            let currentWord = wordList[Math.floor(Math.random() * wordList.length)];
-
-            let tabsHtml = categories.map((c, i) => `
-                <button onclick="currentSubIndex=${i}; renderStage4(document.getElementById('stage-content'))" 
-                        class="px-3 py-1.5 rounded-lg text-sm font-bold ${activeCat.id === c.id ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700'}">
-                    ${c.name}
-                </button>
-            `).join('');
-
-            container.innerHTML = `
-                <div class="flex flex-wrap justify-center gap-2 mb-6">${tabsHtml}</div>
-                <div class="text-7xl mb-2">${currentWord.emoji}</div>
-                <div class="text-5xl font-black text-indigo-700 mb-6 tracking-wide">${currentWord.word}</div>
-                <div class="flex gap-4">
-                    <button onclick="speakText('${currentWord.word}')" class="bg-amber-500 text-white text-lg font-bold py-3 px-6 rounded-2xl shadow btn-bounce">🔊 הַשְׁמַע מִילָּה</button>
-                    <button onclick="addStar(); renderStage4(document.getElementById('stage-content'))" class="bg-indigo-600 text-white text-lg font-bold py-3 px-6 rounded-2xl shadow btn-bounce">מִילָּה בָּאָה ⬅️</button>
-                </div>
-            `;
-        }
-
-        // --- STAGE 5 ---
-        function renderStage5(container) {
-            const item = sentencesData[currentSubIndex % sentencesData.length];
-            
-            let optionsHtml = item.options.map((opt, i) => `
-                <button onclick="checkSentenceAnswer(${i}, ${item.answer})" class="text-5xl p-4 bg-gray-50 border-2 border-gray-200 hover:border-indigo-500 rounded-2xl shadow-sm btn-bounce">
-                    ${opt}
-                </button>
-            `).join('');
-
-            container.innerHTML = `
-                <div class="text-gray-500 font-extrabold text-xl mb-3">קִרְאוּ אֶת הַמִּשְׁפָּט:</div>
-                <div class="text-3xl sm:text-4xl font-black text-indigo-800 mb-6 leading-relaxed">${item.text}</div>
-                <button onclick="speakText('${item.text}')" class="mb-6 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-5 rounded-xl shadow btn-bounce">🔊 הַשְׁמַע אֶת הַמִּשְׁפָּט</button>
-                <div class="text-gray-600 font-bold mb-3">בַּחֲרוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה:</div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-md">${optionsHtml}</div>
-                <div id="sentence-feedback" class="mt-4 text-xl font-bold min-h-[30px]"></div>
-            `;
-        }
-
-        function checkSentenceAnswer(selected, correct) {
-            const feedback = document.getElementById('sentence-feedback');
-            if (selected === correct) {
-                addStar();
-                feedback.className = "mt-4 text-xl font-bold text-green-600";
-                feedback.innerText = "כָּל הַכָּבוֹד! תְּשׁוּבָה נְכוֹנָה! ⭐";
-                setTimeout(() => {
-                    currentSubIndex++;
-                    renderStage();
-                }, 1500);
-            } else {
-                feedback.className = "mt-4 text-xl font-bold text-red-500";
-                feedback.innerText = "נַסּוּ שׁוּב! 🤔";
-            }
-        }
-
-        // --- STAGE 6 ---
-        function renderStage6(container) {
-            const story = storiesData[currentSubIndex % storiesData.length];
-
-            let linesHtml = story.lines.map(line => `
-                <div class="story-line font-extrabold text-gray-800 my-1">${line}</div>
-            `).join('');
-
-            let optionsHtml = story.options.map((opt, i) => `
-                <button onclick="checkStoryAnswer(${i}, ${story.answer})" class="py-3 px-4 bg-gray-50 border-2 border-gray-200 hover:border-indigo-500 rounded-xl text-lg font-bold text-gray-700 btn-bounce">
-                    ${opt}
-                </button>
-            `).join('');
-
-            container.innerHTML = `
-                <div class="text-2xl font-black text-indigo-700 mb-4">${story.title}</div>
-                <div class="bg-amber-50/60 border border-amber-200 rounded-2xl p-4 sm:p-6 mb-6 w-full text-center">
-                    ${linesHtml}
-                </div>
-                <button onclick="speakText('${story.lines.join(' ')}')" class="mb-6 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl shadow btn-bounce">🔊 הַשְׁמַע אֶת הַסִּפּוּר</button>
-                <div class="w-full border-t border-gray-200 pt-4">
-                    <div class="text-indigo-900 font-bold text-lg mb-3">${story.question}</div>
-                    <div class="flex flex-col sm:flex-row justify-center gap-3 w-full max-w-md mx-auto">${optionsHtml}</div>
-                </div>
-                <div id="story-feedback" class="mt-4 text-xl font-bold min-h-[30px]"></div>
-            `;
-        }
-
-        function checkStoryAnswer(selected, correct) {
-            const feedback = document.getElementById('story-feedback');
-            if (selected === correct) {
-                addStar();
-                feedback.className = "mt-4 text-xl font-bold text-green-600";
-                feedback.innerText = "מְעוּלָּה! עֲנִיתֶם נָכוֹן! ⭐";
-                setTimeout(() => {
-                    currentSubIndex++;
-                    renderStage();
-                }, 1800);
-            } else {
-                feedback.className = "mt-4 text-xl font-bold text-red-500";
-                feedback.innerText = "נַסּוּ שׁוּב! 🤔";
-            }
-        }
-
-        // Initialize stage on load
-        window.onload = function() {
-            renderStage();
-        };
-    </script>
-</body>
-</html>
+        const vowelsData =
