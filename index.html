@@ -396,7 +396,7 @@
                 window.speechSynthesis.cancel();
                 const uttr = new SpeechSynthesisUtterance(text);
                 uttr.lang = 'he-IL';
-                uttr.rate = 1.05;  // קצב מהיר ושובב יותר של תוכי
+                uttr.rate = 0.85;  // קצב מהיר ושובב יותר של תוכי
                 uttr.pitch = 1.5;  // טון קול גבוה המתאים לתוכי מהסרטון
                 window.speechSynthesis.speak(uttr);
             }
