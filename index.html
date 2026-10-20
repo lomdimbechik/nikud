@@ -58,12 +58,20 @@
 
         <!-- Main Navigation Tabs -->
         <div class="flex flex-wrap justify-center gap-1.5 md:gap-2 mb-4">
-            <button class="nav-tab active btn-bounce bg-blue-900 text-white font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl shadow-md" onclick="switchTab(1)">1: אוֹתִיּוֹת</button>
+            <button class="nav-tab btn-bounce bg-amber-500 text-white font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl shadow-md" onclick="switchTab(0)">0: הַכֵּר אֶת הַחַיּוֹת 🦁</button>
+            <button class="nav-tab active btn-bounce bg-blue-900 text-white font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl" onclick="switchTab(1)">1: אוֹתִיּוֹת</button>
             <button class="nav-tab btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl" onclick="switchTab(2)">2: צְלִילִים</button>
             <button class="nav-tab btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl" onclick="switchTab(3)">3: אַתְגָּר</button>
             <button class="nav-tab btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl" onclick="switchTab(4)">4: מִילִּים 📖</button>
             <button class="nav-tab btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl" onclick="switchTab(5)">5: מִשְׁפָּטִים 📜</button>
             <button class="nav-tab btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl" onclick="switchTab(6)">6: סִפּוּרִים 📚</button>
+        </div>
+
+        <!-- Section 0: Meet the Animals -->
+        <div id="section0" class="section-content hidden text-center">
+            <h2 class="text-xl md:text-2xl font-black text-blue-900 mb-2">פִגְשׁוּ אֶת הַחַיּוֹת וְהַצְּלִילִים שֶׁלָהֶן! 🦁🐝🐦🐒🐑🐄</h2>
+            <p class="text-sm md:text-base font-bold text-slate-600 mb-4">לַחֲצוּ עַל חַיָּה כְּדֵי לִשְׁמֹעַ אֶת הַהַצָגָה שֶׁלָהּ:</p>
+            <div id="animalsList" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-w-xl mx-auto"></div>
         </div>
 
         <!-- Section 1 -->
@@ -169,49 +177,58 @@
     <script>
         // --- DATA STRUCTURES ---
         const lettersData = [
-            { letter: 'א', name: 'אָלֶף', desc: 'אַרְנָב 🐇', phrase: 'אָלֶף עֲבוּר אַרְנָב' },
-            { letter: 'ב', name: 'בֵּית', desc: 'בַּיִת 🏠', phrase: 'בֵּית עֲבוּר בַּיִת' },
-            { letter: 'ג', name: 'גִּימֶל', desc: 'גַּמָּל 🐪', phrase: 'גִּימֶל עֲבוּר גַּמָּל' },
-            { letter: 'ד', name: 'דָּלֶת', desc: 'דְּבוֹרָה 🐝', phrase: 'דָּלֶת עֲבוּר דְּבוֹרָה' },
-            { letter: 'ה', name: 'הֵא', desc: 'הַפְתָּעָה ✈️', phrase: 'הֵא עֲבוּר הַפְתָּעָה' },
-            { letter: 'ו', name: 'וָו', desc: 'וֶרֶד 🌹', phrase: 'וָו עֲבוּר וֶרֶד' },
-            { letter: 'ז', name: 'זַיִן', desc: 'זֶבְרָה 🦓', phrase: 'זַיִן עֲבוּר זֶבְרָה' },
-            { letter: 'ח', name: 'חֵית', desc: 'חָתוּל 🐱', phrase: 'חֵית עֲבוּר חָתוּל' },
-            { letter: 'ט', name: 'טֵית', desc: 'טֶלֶפֿוֹן ☎️', phrase: 'טֵית עֲבוּר טֶלֶפֿוֹן' },
-            { letter: 'י', name: 'יוֹד', desc: 'יָרֵחַ 🌙', phrase: 'יוֹד עֲבוּר יָרֵחַ' },
-            { letter: 'כ', name: 'כַּף', desc: 'כֶּלֶב 🐶', phrase: 'כֶּלֶב עֲבוּר כֶּלֶב' },
-            { letter: 'ל', name: 'לָמֶד', desc: 'לִימוֹן 🍋', phrase: 'לָמֶד עֲבוּר לִימוֹן' },
-            { letter: 'מ', name: 'מֵם', desc: 'מַטוֹס ✈️', phrase: 'מֵם עֲבוּר מַטוֹס' },
-            { letter: 'נ', name: 'נוּן', desc: 'נָחָשׁ 🐍', phrase: 'נוּן עֲבוּר נָחָשׁ' },
-            { letter: 'ס', name: 'סָמֶךְ', desc: 'סוּס 🐴', phrase: 'סָמֶךְ עֲבוּר סוּס' },
-            { letter: 'ע', name: 'עַיִן', desc: 'עוּגָה 🎂', phrase: 'עַיִן עֲבוּר עוּגָה' },
-            { letter: 'פ', name: 'פֵּא', desc: 'פִּיל 🐘', phrase: 'פֵּא עֲבוּר פִּיל' },
-            { letter: 'צ', name: 'צָדִי', desc: 'צָב 🐢', phrase: 'צָדִי עֲבוּר צָב' },
-            { letter: 'ק', name: 'קוֹף', desc: 'קוֹף 🐒', phrase: 'קוֹף עֲבוּר קוֹף' },
-            { letter: 'ר', name: 'רֵישׁ', desc: 'רַכֶּבֶת 🚂', phrase: 'רֵישׁ עֲבוּר רַכֶּבֶת' },
-            { letter: 'ש', name: 'שִׁין', desc: 'שֶׁמֶשׁ ☀️', phrase: 'שִׁין עֲבוּר שֶׁמֶשׁ' },
-            { letter: 'ת', name: 'תָּו', desc: 'תּוּכִּי 🦜', phrase: 'תָּו עֲבוּר תּוּכִּי' }
+            { letter: 'א', name: 'אָלֶף', desc: 'אַרְנָב 🐇', phrase: 'אָלֶף – אַרְנָב' },
+            { letter: 'בּ', name: 'בֵּית', desc: 'בַּיִת 🏠', phrase: 'בֵּית – בַּיִת' },
+            { letter: 'ג', name: 'גִּימֶל', desc: 'גַּמָּל 🐪', phrase: 'גִּימֶל – גַּמָּל' },
+            { letter: 'ד', name: 'דָּלֶת', desc: 'דְּבוֹרָה 🐝', phrase: 'דָּלֶת – דְּבוֹרָה' },
+            { letter: 'ה', name: 'הֵא', desc: 'הַפְתָעָה 🎁', phrase: 'הֵא – הַפְתָעָה' },
+            { letter: 'ו', name: 'וָו', desc: 'וֶרֶד 🌹', phrase: 'וָו – וֶרֶד' },
+            { letter: 'ז', name: 'זַיִן', desc: 'זֶבְרָה 🦓', phrase: 'זַיִן – זֶבְרָה' },
+            { letter: 'ח', name: 'חֵית', desc: 'חָתוּל 🐱', phrase: 'חֵית – חָתוּל' },
+            { letter: 'ט', name: 'טֵית', desc: 'טֶלֶפֿוֹן ☎️', phrase: 'טֵית – טֶלֶפֿוֹן' },
+            { letter: 'י', name: 'יוֹד', desc: 'יָרֵחַ 🌙', phrase: 'יוֹד – יָרֵחַ' },
+            { letter: 'כּ', name: 'כַּף', desc: 'כֶּלֶב 🐶', phrase: 'כַּף – כֶּלֶב' },
+            { letter: 'ך', name: 'כַּף סוֹפִית', desc: 'מֶלֶךְ 👑', phrase: 'כַּף סוֹפִית – מֶלֶךְ', isFinal: true },
+            { letter: 'ל', name: 'לָמֶד', desc: 'לִימוֹן 🍋', phrase: 'לָמֶד – לִימוֹן' },
+            { letter: 'מ', name: 'מֵם', desc: 'מַטוֹס ✈️', phrase: 'מֵם – מַטוֹס' },
+            { letter: 'ם', name: 'מֵם סוֹפִית', desc: 'יָם 🌊', phrase: 'מֵם סוֹפִית – יָם', isFinal: true },
+            { letter: 'נ', name: 'נוּן', desc: 'נָחָשׁ 🐍', phrase: 'נוּן – נָחָשׁ' },
+            { letter: 'ן', name: 'נוּן סוֹפִית', desc: 'עַנָן ☁️', phrase: 'נוּן סוֹפִית – עַנָן', isFinal: true },
+            { letter: 'ס', name: 'סָמֶךְ', desc: 'סוּס 🐴', phrase: 'סָמֶךְ – סוּס' },
+            { letter: 'ע', name: 'עַיִן', desc: 'עוּגָה 🎂', phrase: 'עַיִן – עוּגָה' },
+            { letter: 'פּ', name: 'פֵּא', desc: 'פִּיל 🐘', phrase: 'פֵּא – פִּיל' },
+            { letter: 'ף', name: 'פֵּא סוֹפִית', desc: 'קוֹף 🐒', phrase: 'פֵּא סוֹפִית – קוֹף', isFinal: true },
+            { letter: 'צ', name: 'צָדִי', desc: 'צָב 🐢', phrase: 'צָדִי – צָב' },
+            { letter: 'ץ', name: 'צָדִי סוֹפִית', desc: 'עֵץ 🌳', phrase: 'צָדִי סוֹפִית – עֵץ', isFinal: true },
+            { letter: 'ק', name: 'קוֹף', desc: 'קוֹף 🐒', phrase: 'קוֹף – קוֹף' },
+            { letter: 'ר', name: 'רֵישׁ', desc: 'רַכֶּבֶת 🚂', phrase: 'רֵישׁ – רַכֶּבֶת' },
+            { letter: 'שׁ', name: 'שִׁין יְמָנִית', desc: 'שֶׁמֶשׁ ☀️', phrase: 'שִׁין יְמָנִית – שֶׁמֶשׁ' },
+            { letter: 'שׂ', name: 'שִׂין שְׂמָאלית', desc: 'שָׂפָה 👄', phrase: 'שִׂין שְׂמָאלית – שָׂפָה' },
+            { letter: 'ת', name: 'תָּו', desc: 'תּוּכִּי 🦜', phrase: 'תָּו – תּוּכִּי' }
         ];
 
         const standardVowelLetters = [
-            { letter: 'ב', name: 'בֵּית' },
+            { letter: 'בּ', name: 'בֵּית' },
             { letter: 'ג', name: 'גִּימֶל' },
             { letter: 'ד', name: 'דָּלֶת' },
+            { letter: 'כּ', name: 'כַּף' },
             { letter: 'ל', name: 'לָמֶד' },
             { letter: 'מ', name: 'מֵם' },
             { letter: 'נ', name: 'נוּן' },
+            { letter: 'פּ', name: 'פֵּא' },
             { letter: 'ר', name: 'רֵישׁ' },
-            { letter: 'ש', name: 'שִׁין' },
+            { letter: 'שׁ', name: 'שִׁין' },
+            { letter: 'שׂ', name: 'שִׂין' },
             { letter: 'ת', name: 'תָּו' }
         ];
 
         const vowelsData = [
-            { shortName: 'שְׁוָא', icon: '🐝', type: 'single', sign: 'ְ' },
-            { shortName: 'קָמָץ-פַּתַח', icon: '🦁', type: 'multi', subVowels: [{ name: 'קָמָץ', sign: 'ָ' }, { name: 'פַּתַח', sign: 'ַ' }] },
-            { shortName: 'חִירִיק', icon: '🐦', type: 'single', sign: 'ִ' },
-            { shortName: 'חוֹלָם', icon: '🐒', type: 'single', sign: 'ֹ' },
-            { shortName: 'צֵירֵי-סֶגוֹל', icon: '🐑', type: 'multi', subVowels: [{ name: 'צֵירֵי', sign: 'ֵ' }, { name: 'סֶגוֹל', sign: 'ֶ' }] },
-            { shortName: 'קוּבּוּץ-שׁוּרוּק', icon: '🐄', type: 'multi', subVowels: [{ name: 'קוּבּוּץ', sign: 'ֻ' }, { name: 'שׁוּרוּק', sign: 'וּ' }] }
+            { shortName: 'שְׁוָא', icon: '🐝', animalName: 'דְּבוֹרָה', introText: 'שָׁלוֹם, אֲנִי דְּבוֹרָה! אֲנִי מַשְׁמִיעָה אֶת הַצְּלִיל זְזְזְ, וַאֲתַרְגֵּל אִתְּכֶם אֶת נִיקּוּד הַשְׁוָא!', type: 'single', sign: 'ְ' },
+            { shortName: 'קָמָץ-פַּתַח', icon: '🦁', animalName: 'אַרְיֵה', introText: 'שָׁלוֹם, אֲנִי אַרְיֵה! אֲנִי מַשְׁמִיעַ אֶת הַצְּלִיל אָההה, וַאֲתַרְגֵּל אִתְּכֶם אֶת צְלִילֵי קָמָץ וּפַתַח!', type: 'multi', subVowels: [{ name: 'קָמָץ', sign: 'ָ' }, { name: 'פַּתַח', sign: 'ַ' }] },
+            { shortName: 'חִירִיק', icon: '🐦', animalName: 'צִפּוֹר', introText: 'שָׁלוֹם, אֲנִי צִפּוֹר! אֲנִי מַשְׁמִיעָה אֶת הַצְּלִיל אִי אִי, וַאֲתַרְגֵּל אִתְּכֶם אֶת נִיקּוּד הַחִירִיק!', type: 'single', sign: 'ִ' },
+            { shortName: 'חוֹלָם', icon: '🐒', animalName: 'קוֹף', introText: 'שָׁלוֹם, אֲנִי קוֹף! אֲנִי מַשְׁמִיעַ אֶת הַצְּלִיל אוֹ אוֹ, וַאֲתַרְגֵּל אִתְּכֶם אֶת נִיקּוּד הַחוֹלָם!', type: 'single', sign: 'ֹ' },
+            { shortName: 'צֵירֵי-סֶגוֹל', icon: '🐑', animalName: 'כִּבְשָׂה', introText: 'שָׁלוֹם, אֲנִי כִּבְשָׂה! אֲנִי מַשְׁמִיעָה אֶת הַצְּלִיל אֶה אֶה, וַאֲתַרְגֵּל אִתְּכֶם אֶת צֵירֵי וְסֶגוֹל!', type: 'multi', subVowels: [{ name: 'צֵירֵי', sign: 'ֵ' }, { name: 'סֶגוֹל', sign: 'ֶ' }] },
+            { shortName: 'קוּבּוּץ-שׁוּרוּק', icon: '🐄', animalName: 'פָּרָה', introText: 'שָׁלוֹם, אֲנִי פָּרָה! אֲנִי מַשְׁמִיעָה אֶת הַצְּלִיל אוּ אוּ, וַאֲתַרְגֵּל אִתְּכֶם אֶת קוּבּוּץ וְשׁוּרוּק!', type: 'multi', subVowels: [{ name: 'קוּבּוּץ', sign: 'ֻ' }, { name: 'שׁוּרוּק', sign: 'וּ' }] }
         ];
 
         const wordsByVowels = {
@@ -355,51 +372,104 @@
                 sentences: [
                     'הַדָּג הַזָּהָב שׂוֹחֶה בַּיָּם.',
                     'הַמַּיִם נְקִיִּים וּכְחֻלִּים.',
-                    'הַדָּג שׂוֹחֶה מַהֵר וְצוֹלֵל עָמֹק.',
-                    'כַּמָּה יָפֶה לִשְׂחוֹת בַּמַּיִם!'
+                    'הַדָּג שׂוֹחֶה מַהֵר וְצוֹלֵל עָמֹק.'
                 ],
-                question: 'איפה שוחה הדג?',
+                question: 'אֵיפֹה שׂוֹחֶה הַדָּג?',
                 options: [
                     { icon: '🌊', label: 'יָּם' },
-                    { icon: '🏜️', label: 'מִדְבָּר' },
-                    { icon: '🏔️', label: 'הַר' },
-                    { icon: '☁️', label: 'עָנָן' }
+                    { icon: '🏠', label: 'בַּיִת' },
+                    { icon: '🌳', label: 'עֵץ' },
+                    { icon: '🚗', label: 'מְכוֹנִית' }
                 ],
                 correctIcon: '🌊'
             }
         ];
 
-        const praisePhrases = ['כָּל הַכָּבוֹד!', 'מְעוּלֶּה!', 'אַלּוּף!', 'נִפְלָא!', 'יוֹפִי שֶׁל עֲבוֹדָה!'];
-
-        // --- APP STATE ---
+        // State variables
         let stars = 0;
-        let correctAnswersCount = 0;
+        let currentStageNumber = 1;
         let currentStage1Index = 0;
         let stage1Mode = 'letterToPic';
         let stage1ShuffledIndices = [];
-
         let currentStage2Index = 0;
         let currentStage2LetterObj = null;
-        let currentStage2SubSign = null;
-        let currentStage2SpecificVowelName = null;
-
+        let currentStage2SubSign = '';
+        let currentStage2SpecificVowelName = '';
         let currentStage4Index = 0;
         let currentStage4WordObj = null;
-
         let currentStage5Index = 0;
         let currentStage6Index = 0;
         let currentRandomVowel = null;
+        let correctAnswersCount = 0;
 
-        // --- AUDIO HELPERS (Parrot Voice Configured) ---
+        // TTS Helper
         function speak(text) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                const uttr = new SpeechSynthesisUtterance(text);
-                uttr.lang = 'he-IL';
-                uttr.rate = 0.85;  // קצב מהיר ושובב יותר של תוכי
-                uttr.pitch = 1.5;  // טון קול גבוה המתאים לתוכי מהסרטון
-                window.speechSynthesis.speak(uttr);
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'he-IL';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
             }
+        }
+
+        function getRandomPraise() {
+            const praises = ['כָּל הַכָּבוֹד!', 'מְעוּלֶּה!', 'אַלּוּף!', 'נִפְלָא!', 'יוֹפִי שֶׁל עֲבוֹדָה!'];
+            return praises[Math.floor(Math.random() * praises.length)];
+        }
+
+        function addStar() {
+            stars += 1;
+            document.getElementById('starCount').innerText = stars;
+        }
+
+        function switchTab(tabIndex) {
+            currentStageNumber = tabIndex;
+            const contents = document.querySelectorAll('.section-content');
+            contents.forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            const selectedSection = document.getElementById(`section${tabIndex}`);
+            if (selectedSection) {
+                selectedSection.classList.remove('hidden');
+                selectedSection.classList.add('block');
+            }
+
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach((tab, index) => {
+                if (index === tabIndex) {
+                    tab.classList.add('bg-blue-900', 'text-white');
+                    tab.classList.remove('bg-slate-200', 'text-slate-700');
+                } else if (index !== 0) {
+                    tab.classList.add('bg-slate-200', 'text-slate-700');
+                    tab.classList.remove('bg-blue-900', 'text-white');
+                }
+            });
+
+            if (tabIndex === 0) renderStage0();
+            if (tabIndex === 1) renderStage1();
+            if (tabIndex === 2) renderStage2Tabs();
+            if (tabIndex === 3) resetRandomExercise();
+            if (tabIndex === 4) renderStage4Tabs();
+            if (tabIndex === 5) renderStage5();
+            if (tabIndex === 6) renderStage6();
+        }
+
+        function renderStage0() {
+            const container = document.getElementById('animalsList');
+            let html = '';
+            vowelsData.forEach((v, idx) => {
+                html += `
+                    <button class="btn-bounce bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 p-4 rounded-2xl flex flex-col items-center justify-center text-center shadow-md" onclick="playAnimalIntro(${idx})">
+                        <span class="text-5xl mb-2">${v.icon}</span>
+                        <span class="font-bold text-base text-amber-900">${v.animalName}</span>
+                        <span class="text-xs text-amber-700 font-semibold mt-1">(${v.shortName})</span>
+                    </button>
+                `;
+            });
+            container.innerHTML = html;
         }
 
         function playSuccessJingle() {
@@ -430,115 +500,53 @@
             }
         }
 
-        function addStar() {
-            stars++;
-            document.getElementById('starCount').innerText = stars;
+        function playAnimalIntro(vowelIdx) {
+            const v = vowelsData[vowelIdx];
+            speak(v.introText);
         }
 
-        function getRandomPraise() {
-            return praisePhrases[Math.floor(Math.random() * praisePhrases.length)];
-        }
-
-        // --- NAVIGATION ---
-        function switchTab(tabNum) {
-            document.querySelectorAll('.nav-tab').forEach((b, idx) => {
-                if (idx === tabNum - 1) {
-                    b.className = "nav-tab active btn-bounce bg-blue-900 text-white font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl shadow-md";
-                } else {
-                    b.className = "nav-tab btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-2.5 text-xs md:text-sm rounded-xl";
-                }
-            });
-
-            document.querySelectorAll('.section-content').forEach((s, idx) => {
-                if (idx === tabNum - 1) {
-                    s.classList.remove('hidden');
-                    s.classList.add('block');
-                } else {
-                    s.classList.remove('block');
-                    s.classList.add('hidden');
-                }
-            });
-
-            if (tabNum === 1) renderStage1();
-            if (tabNum === 2) renderStage2Tabs();
-            if (tabNum === 3) resetRandomExercise();
-            if (tabNum === 4) renderStage4Tabs();
-            if (tabNum === 5) renderStage5();
-            if (tabNum === 6) renderStage6();
-        }
-
-        // --- STAGE 1 LOGIC ---
-        function setStage1Mode(mode) {
-            stage1Mode = mode;
-            const m1 = document.getElementById('sub1_mode1');
-            const m2 = document.getElementById('sub1_mode2');
-            const m3 = document.getElementById('sub1_mode3');
-
-            m1.className = "mode-btn btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-3 text-xs rounded-lg";
-            m2.className = "mode-btn btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-3 text-xs rounded-lg";
-            m3.className = "mode-btn btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-3 text-xs rounded-lg";
-
-            if (mode === 'letterToPic') m1.className = "mode-btn btn-bounce bg-blue-800 text-white font-bold py-2 px-3 text-xs rounded-lg";
-            if (mode === 'picToLetter') m2.className = "mode-btn btn-bounce bg-blue-800 text-white font-bold py-2 px-3 text-xs rounded-lg";
-            if (mode === 'mixedRandom') m3.className = "mode-btn btn-bounce bg-blue-800 text-white font-bold py-2 px-3 text-xs rounded-lg";
-
-            currentStage1Index = 0;
-            if (mode === 'mixedRandom') {
-                stage1ShuffledIndices = shuffleArray(lettersData.map((_, i) => i));
-            }
-            renderStage1();
-        }
-
-        function renderStage1() {
-            const container = document.getElementById('stage1Content');
-            let activeIdx = currentStage1Index;
-            
-            let effectiveMode = stage1Mode;
-            if (stage1Mode === 'mixedRandom') {
-                activeIdx = stage1ShuffledIndices[currentStage1Index] || 0;
-                effectiveMode = (currentStage1Index % 2 === 0) ? 'letterToPic' : 'picToLetter';
-            }
-
-            const activeItem = lettersData[activeIdx];
-
-            if (effectiveMode === 'letterToPic') {
-                speak(`אֵזוֹ תְּמוּנָה מַתְאִימָה לָאוֹת ${activeItem.name}?`);
-
-                let html = `
-                    <div class="mb-4">
-                        <span class="text-9xl font-black text-blue-900 drop-shadow-md">${activeItem.letter}</span>
-                        <p class="text-xl font-bold text-slate-700 mt-2">בַּחֲרוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה לָאוֹת ${activeItem.name}:</p>
+        function showNextStageButton(nextStageNum, completionMessage) {
+            playSuccessJingle();
+            speak(`${completionMessage} מָה תִּרְצוּ לַעֲשׂוֹת כַּעֵת?`);
+            const container = document.getElementById(`stage${currentStageNumber}Content`) || document.getElementById('stage1Content');
+            container.innerHTML = `
+                <div class="my-6 p-6 bg-amber-50 border-4 border-amber-300 rounded-3xl text-center shadow-lg animate-bounce max-w-md mx-auto">
+                    <div class="text-6xl mb-3">🎉⭐🏆</div>
+                    <h2 class="text-2xl md:text-3xl font-black text-blue-900 mb-2">${completionMessage}</h2>
+                    <p class="text-lg font-bold text-slate-700 mb-6">מָה תִּרְצוּ לַעֲשׂוֹת כַּעֵת?</p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <button onclick="restartCurrentStage()" class="btn-bounce bg-blue-600 hover:bg-blue-700 text-white font-black py-3.5 px-6 rounded-2xl text-lg shadow-xl border-b-4 border-blue-800 flex items-center justify-center gap-2">
+                            הַמְשֵׁךְ לְתַרְגֵּל 🔄
+                        </button>
+                        <button onclick="switchTab(${nextStageNum})" class="btn-bounce bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3.5 px-6 rounded-2xl text-lg shadow-xl border-b-4 border-emerald-800 flex items-center justify-center gap-2">
+                            עֲבוֹר לַשָּׁלָב הַבָּא 🚀
+                        </button>
                     </div>
-                `;
+                </div>
+            `;
+        }
 
-                let options = getRandomOptions(activeItem, 'desc', lettersData);
-
-                html += `<div class="grid grid-cols-2 gap-4 max-w-md mx-auto">`;
-                options.forEach(opt => {
-                    html += `<button class="btn-bounce bg-slate-50 hover:bg-blue-50 border-3 border-blue-200 font-bold p-4 text-2xl md:text-3xl rounded-2xl shadow-md min-h-[90px] flex items-center justify-center" onclick="checkStage1('${opt}', '${activeItem.desc}', '${activeItem.phrase}')">${opt}</button>`;
-                });
-                html += `</div>`;
-
-                container.innerHTML = html;
+        function restartCurrentStage() {
+            if (currentStageNumber === 1) {
+                currentStage1Index = 0;
+                if (stage1Mode === 'mixedRandom') {
+                    stage1ShuffledIndices = shuffleArray(lettersData.map((_, i) => i));
+                }
+                renderStage1();
+            } else if (currentStageNumber === 2) {
+                initStage2Queue();
+                renderStage2();
+            } else if (currentStageNumber === 4) {
+                pickNextStage4Word();
+                renderStage4();
+            } else if (currentStageNumber === 5) {
+                currentStage5Index = 0;
+                renderStage5();
+            } else if (currentStageNumber === 6) {
+                currentStage6Index = 0;
+                renderStage6();
             } else {
-                speak(`אֵזוֹ אוֹת מַתְאִימָה לַתְּמוּנָה ${activeItem.desc}?`);
-
-                let html = `
-                    <div class="mb-4">
-                        <span class="text-8xl my-2 inline-block">${activeItem.desc}</span>
-                        <p class="text-xl font-bold text-slate-700 mt-2">בַּחֲרוּ אֶת הָאוֹת הַמַּתְאִימָה:</p>
-                    </div>
-                `;
-
-                let options = getRandomOptions(activeItem, 'letter', lettersData);
-
-                html += `<div class="grid grid-cols-2 gap-4 max-w-md mx-auto">`;
-                options.forEach(opt => {
-                    html += `<button class="btn-bounce bg-slate-50 hover:bg-blue-50 border-3 border-blue-200 font-black p-4 text-5xl md:text-6xl rounded-2xl shadow-md min-h-[90px] text-blue-950 flex items-center justify-center" onclick="checkStage1('${opt}', '${activeItem.letter}', '${activeItem.phrase}')">${opt}</button>`;
-                });
-                html += `</div>`;
-
-                container.innerHTML = html;
+                switchTab(currentStageNumber);
             }
         }
 
@@ -557,7 +565,7 @@
                     if (stage1Mode === 'mixedRandom') {
                         stage1ShuffledIndices = shuffleArray(lettersData.map((_, i) => i));
                     }
-                    setTimeout(() => speak("כָּל הַכָּבוֹד! סִיַּמְתֶּם אֶת כָּל הָאוֹתִיּוֹת בְּהַצְלָחָה!"), 1800);
+                    setTimeout(() => showNextStageButton(2, "כָּל הַכָּבוֹד! סִיַּמְתֶּם אֶת כָּל הָאוֹתִיּוֹת!"), 1500);
                 } else {
                     setTimeout(renderStage1, 1800);
                 }
@@ -568,27 +576,41 @@
         }
 
         // --- STAGE 2 LOGIC ---
+        let stage2ShuffledLetters = [];
+
         function renderStage2Tabs() {
             const tabsContainer = document.getElementById('vowelTabs');
             tabsContainer.innerHTML = '';
+
             vowelsData.forEach((v, index) => {
                 const btn = document.createElement('button');
                 btn.className = `btn-bounce py-2 px-3 rounded-xl font-bold text-sm md:text-base border-2 transition-all ${index === currentStage2Index ? 'bg-amber-500 text-white border-amber-600 shadow-lg scale-105' : 'bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200'}`;
                 btn.innerText = `${v.icon} ${v.shortName}`;
                 btn.onclick = () => {
                     currentStage2Index = index;
-                    pickNextStage2Letter();
+                    initStage2Queue();
                     renderStage2();
                     renderStage2Tabs();
                 };
                 tabsContainer.appendChild(btn);
             });
-            pickNextStage2Letter();
+            initStage2Queue();
             renderStage2();
         }
 
+        function initStage2Queue() {
+            stage2ShuffledLetters = shuffleArray([...lettersData]);
+            pickNextStage2Letter();
+        }
+
         function pickNextStage2Letter() {
-            currentStage2LetterObj = standardVowelLetters[Math.floor(Math.random() * standardVowelLetters.length)];
+            if (stage2ShuffledLetters.length === 0) {
+                currentStage2LetterObj = null;
+                return;
+            }
+            const nextItem = stage2ShuffledLetters.pop();
+            currentStage2LetterObj = { letter: nextItem.letter, name: nextItem.name };
+
             const v = vowelsData[currentStage2Index];
             if (v.type === 'multi') {
                 const sub = v.subVowels[Math.floor(Math.random() * v.subVowels.length)];
@@ -610,8 +632,14 @@
         }
 
         function renderStage2() {
-            const v = vowelsData[currentStage2Index];
             const container = document.getElementById('stage2Content');
+
+            if (!currentStage2LetterObj) {
+                showNextStageButton(3, "כָּל הַכָּבוֹד! תִּרְגַּלְתֶּם אֶת כָּל הָאוֹתִיּוֹת בַּצְּלִיל הַזֶּה!");
+                return;
+            }
+
+            const v = vowelsData[currentStage2Index];
             const activeLetter = currentStage2LetterObj.letter;
             const activeLetterName = currentStage2LetterObj.name;
             const correctSignAnswer = getVowelDisplayString(activeLetter, v, currentStage2SubSign);
@@ -803,8 +831,13 @@
                 let praiseText = (correctAnswersCount % 3 === 0) ? ` - ${getRandomPraise()}` : "";
                 speak(`${sentenceText}${praiseText}`);
 
-                currentStage5Index = (currentStage5Index + 1) % sentencesData.length;
-                setTimeout(renderStage5, 2200);
+                currentStage5Index++;
+                if (currentStage5Index >= sentencesData.length) {
+                    currentStage5Index = 0;
+                    setTimeout(() => showNextStageButton(6, "כָּל הַכָּבוֹד! סִיַּמְתֶּם אֶת כָּל הַמִּשְׁפָּטִים!"), 1500);
+                } else {
+                    setTimeout(renderStage5, 2200);
+                }
             } else {
                 speak("נַסּוּ שׁוּב!");
             }
@@ -846,8 +879,13 @@
                 let praiseText = (correctAnswersCount % 3 === 0) ? ` - ${getRandomPraise()}` : "";
                 speak(`${answerLabel}! ${praiseText}`);
 
-                currentStage6Index = (currentStage6Index + 1) % storiesData.length;
-                setTimeout(renderStage6, 2200);
+                currentStage6Index++;
+                if (currentStage6Index >= storiesData.length) {
+                    currentStage6Index = 0;
+                    setTimeout(() => showNextStageButton(1, "🎉 אַלּוּפִים! סִיַּמְתֶּם אֶת כָּל הַסִּפּוּרִים וְאֶת כָּל הַמִּשְׂחָק!"), 1500);
+                } else {
+                    setTimeout(renderStage6, 2200);
+                }
             } else {
                 speak("נַסּוּ שׁוּב!");
             }
@@ -923,6 +961,116 @@
         }
 
         // --- INITIALIZATION ---
+        function setStage1Mode(mode) {
+            stage1Mode = mode;
+            currentStage1Index = 0;
+
+            const b1 = document.getElementById('sub1_mode1');
+            const b2 = document.getElementById('sub1_mode2');
+            const b3 = document.getElementById('sub1_mode3');
+
+            [b1, b2, b3].forEach(b => {
+                if (b) {
+                    b.className = "mode-btn btn-bounce bg-slate-200 text-slate-700 font-bold py-2 px-3 text-xs rounded-lg";
+                }
+            });
+
+            if (mode === 'letterToPic' && b1) {
+                b1.className = "mode-btn btn-bounce bg-blue-800 text-white font-bold py-2 px-3 text-xs rounded-lg";
+            } else if (mode === 'picToLetter' && b2) {
+                b2.className = "mode-btn btn-bounce bg-blue-800 text-white font-bold py-2 px-3 text-xs rounded-lg";
+            } else if (mode === 'mixedRandom' && b3) {
+                b3.className = "mode-btn btn-bounce bg-blue-800 text-white font-bold py-2 px-3 text-xs rounded-lg";
+                stage1ShuffledIndices = shuffleArray(lettersData.map((_, i) => i));
+            }
+
+            renderStage1();
+        }
+
+        function renderStage1() {
+            const container = document.getElementById('stage1Content');
+            if (!container) return;
+
+            let indexToUse = currentStage1Index;
+            if (stage1Mode === 'mixedRandom') {
+                if (!stage1ShuffledIndices || stage1ShuffledIndices.length !== lettersData.length) {
+                    stage1ShuffledIndices = shuffleArray(lettersData.map((_, i) => i));
+                }
+                indexToUse = stage1ShuffledIndices[currentStage1Index];
+            }
+
+            const currentObj = lettersData[indexToUse];
+            if (!currentObj) return;
+
+            let modeToRender = stage1Mode;
+            if (stage1Mode === 'mixedRandom') {
+                modeToRender = Math.random() > 0.5 ? 'letterToPic' : 'picToLetter';
+            }
+
+            let html = '';
+
+            if (modeToRender === 'letterToPic') {
+                speak(`אֵיזוֹ תְּמוּנָה מַתְאִימָה לָאוֹת ${currentObj.name}?`);
+
+                html += `
+                    <div class="my-4">
+                        <div class="text-8xl font-black text-blue-900 mb-2">${currentObj.letter}</div>
+                        <p class="font-bold text-slate-700 text-lg md:text-xl">אֵיזוֹ תְּמוּנָה מַתְאִימָה לָאוֹת <span class="text-blue-900 font-black">${currentObj.name}</span>?</p>
+                    </div>
+                `;
+
+                const wrongObjs = lettersData.filter(item => item.letter !== currentObj.letter);
+                const shuffledWrong = shuffleArray(wrongObjs).slice(0, 3);
+                const options = shuffleArray([currentObj, ...shuffledWrong]);
+
+                html += `<div class="grid grid-cols-2 gap-4 max-w-md mx-auto">`;
+                options.forEach(opt => {
+                    html += `
+                        <button class="btn-bounce bg-slate-50 hover:bg-amber-50 border-3 border-amber-200 p-4 rounded-2xl shadow-md flex flex-col items-center justify-center min-h-[120px]" onclick="checkStage1('${opt.desc}', '${currentObj.desc}', '${currentObj.phrase}')">
+                            <span class="text-6xl mb-1">${opt.desc.split(' ')[1] || opt.desc}</span>
+                            <span class="text-sm font-bold text-slate-700">${opt.desc.split(' ')[0]}</span>
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+
+            } else {
+                const isFinalLetter = currentObj.isFinal || ['ך', 'ם', 'ן', 'ף', 'ץ'].includes(currentObj.letter);
+                const questionPrompt = isFinalLetter 
+                    ? `אֵיזוֹ <span class="text-amber-600 font-black">אוֹת סוֹפִית</span> מַתְאִימָה לַתְּמוּנָה <span class="text-blue-900 font-black">${currentObj.desc}</span>?`
+                    : `אֵיזוֹ אוֹת מַתְאִימָה לַתְּמוּנָה <span class="text-blue-900 font-black">${currentObj.desc}</span>?`;
+
+                const speechPrompt = isFinalLetter
+                    ? `אֵיזוֹ אוֹת סוֹפִית מַתְאִימָה לַתְּמוּנָה ${currentObj.desc}?`
+                    : `אֵיזוֹ אוֹת מַתְאִימָה לַתְּמוּנָה ${currentObj.desc}?`;
+
+                speak(speechPrompt);
+
+                html += `
+                    <div class="my-4">
+                        <div class="text-8xl mb-2">${currentObj.desc.split(' ')[1] || currentObj.desc}</div>
+                        <p class="font-bold text-slate-700 text-lg md:text-xl">${questionPrompt}</p>
+                    </div>
+                `;
+
+                const wrongObjs = lettersData.filter(item => item.letter !== currentObj.letter);
+                const shuffledWrong = shuffleArray(wrongObjs).slice(0, 3);
+                const options = shuffleArray([currentObj, ...shuffledWrong]);
+
+                html += `<div class="grid grid-cols-2 gap-4 max-w-md mx-auto">`;
+                options.forEach(opt => {
+                    html += `
+                        <button class="btn-bounce bg-slate-50 hover:bg-amber-50 border-3 border-amber-200 p-4 rounded-2xl shadow-md flex items-center justify-center min-h-[100px] text-5xl font-black text-blue-950" onclick="checkStage1('${opt.letter}', '${currentObj.letter}', '${currentObj.phrase}')">
+                            ${opt.letter}
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            container.innerHTML = html;
+        }
+
         window.onload = function() {
             renderStage1();
         };
